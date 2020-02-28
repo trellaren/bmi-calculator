@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'reusable_card.dart';
+import 'binary_icons.dart';
 
+// Can I just export this into another file and call it style.dart?
 const double bottomContainerHeight = 80.0;
 const Color defaultCardColor = Color(0xFF101427);
 const Color bottomContainerColor = Color(0xFFEB1555);
+const Color labelTextColor = Color(0xFF8D8E98);
+const double binaryIconColumnHeight = 80.0;
+const double binaryIconFontSize = 18.0;
+const double binaryIconTextGapHeight = 15.0;
 
 class InputPage extends StatefulWidget {
   @override
@@ -23,10 +31,22 @@ class _InputPageState extends State<InputPage> {
             Expanded(child: Row(
               children: <Widget> [
                 Expanded(child:
-                  ReusableCard(colorProp: defaultCardColor,),
+                  ReusableCard(
+                    colorProp: defaultCardColor,
+                    cardChild: BinaryWidget(
+                      title: 'Male',
+                      iconType: FontAwesomeIcons.mars,
+                    ),
+                  ),
                 ),
                 Expanded(child:
-                  ReusableCard(colorProp: defaultCardColor,),
+                  ReusableCard(
+                    colorProp: defaultCardColor,
+                    cardChild: BinaryWidget(
+                      title: 'Female',
+                      iconType: FontAwesomeIcons.venus,
+                    ),
+                  ),
                 ),
               ],
             )),
@@ -55,20 +75,3 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
-
-class ReusableCard extends StatelessWidget {
-  ReusableCard({@required this.colorProp});
-  final Color colorProp;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(3.0, 10.0, 3.0, 10.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(2.0),
-        color: colorProp,
-      ),
-    );
-  }
-}
-
-

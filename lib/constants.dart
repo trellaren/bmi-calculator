@@ -16,5 +16,5 @@ const kLabelTextStyle = TextStyle(
 
 const kBigDickTextStyle = TextStyle(
   fontSize: 50.0,
-  fontWeight: FontWeight.w900,
+  fontWeight: FontWeight.w700,
 );

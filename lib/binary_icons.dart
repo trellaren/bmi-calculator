@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'input_page.dart';
+import 'constants.dart';
 
 class BinaryWidget extends StatelessWidget {
   BinaryWidget({@required this.title, this.iconType});
@@ -12,17 +12,14 @@ class BinaryWidget extends StatelessWidget {
         children: <Widget>[
           Icon(
             iconType,
-            size: binaryIconColumnHeight,
+            size: kBinaryIconColumnHeight,
           ),
           SizedBox(
-              height: binaryIconTextGapHeight
+              height: kBinaryIconTextGapHeight
           ),
           Text(
               title,
-              style: TextStyle(
-                fontSize: binaryIconFontSize,
-                color: labelTextColor,
-              )
+              style: kLabelTextStyle,
           )
         ]
     );

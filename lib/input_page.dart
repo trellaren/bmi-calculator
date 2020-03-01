@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
 import 'binary_icons.dart';
+import 'constants.dart';
 
-// Can I just export this into another file and call it style.dart?
-const double bottomContainerHeight = 80.0;
-const Color defaultCardColor = Color(0xFF101427);
-const Color bottomContainerColor = Color(0xFFEB1555);
-const Color labelTextColor = Color(0xFF8D8E98);
-const double binaryIconColumnHeight = 80.0;
-const double binaryIconFontSize = 18.0;
-const double binaryIconTextGapHeight = 15.0;
+enum Gender {
+  male,
+  female,
+}
 
 class InputPage extends StatefulWidget {
   @override
@@ -18,30 +15,47 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender selectedGender;
+  int height = 180;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+        title: Center(child: Text('BMI CALCULATOR')),
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(child: Row(
               children: <Widget> [
-                Expanded(child:
-                  ReusableCard(
-                    colorProp: defaultCardColor,
+                Expanded(
+                  child: ReusableCard(
+                    onPressed: () {
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
+                    },
+                    colorProp: selectedGender == Gender.male
+                        ? kDefaultCardColor
+                        : kInactiveCardColor,
                     cardChild: BinaryWidget(
                       title: 'Male',
                       iconType: FontAwesomeIcons.mars,
                     ),
                   ),
                 ),
-                Expanded(child:
-                  ReusableCard(
-                    colorProp: defaultCardColor,
+                Expanded(
+                  child: ReusableCard(
+                    onPressed: () {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                    },
+                    colorProp: selectedGender == Gender.female
+                        ? kDefaultCardColor
+                        : kInactiveCardColor,
                     cardChild: BinaryWidget(
                       title: 'Female',
                       iconType: FontAwesomeIcons.venus,
@@ -51,23 +65,59 @@ class _InputPageState extends State<InputPage> {
               ],
             )),
             Expanded(child:
-              ReusableCard(colorProp: defaultCardColor,),
+              ReusableCard(
+                colorProp: kDefaultCardColor,
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'HEIGHT',
+                      style: kLabelTextStyle,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: <Widget>[
+                        Text(
+                          height.toString(),
+                          style: kBigDickTextStyle,
+                        ),
+                        Text(
+                          'cm',
+                          style: kLabelTextStyle,
+                        ),
+                      ],
+                    ),
+                    Slider(
+                      value: height.toDouble(),
+                      min: 90.0,
+                      max: 250.0,
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
             Expanded(child: Row(
               children: <Widget> [
                 Expanded(child:
-                  ReusableCard(colorProp: defaultCardColor,),
+                  ReusableCard(colorProp: kDefaultCardColor,),
                 ),
                 Expanded(child:
-                  ReusableCard(colorProp: defaultCardColor,),
+                  ReusableCard(colorProp: kDefaultCardColor,),
                 ),
               ],
             )),
             Container(
-              color: bottomContainerColor,
+              color: kBottomContainerColor,
               margin: EdgeInsets.only(top: 10.0),
               width: double.infinity,
-              height: bottomContainerHeight,
+              height: kBottomContainerHeight,
             )
           ],
         ),

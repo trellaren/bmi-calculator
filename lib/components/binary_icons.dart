@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import '../constants.dart';
 
 class BinaryWidget extends StatelessWidget {
   BinaryWidget({@required this.title, this.iconType});

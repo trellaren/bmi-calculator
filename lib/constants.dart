@@ -18,3 +18,29 @@ const kBigDickTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w700,
 );
+
+const kWeightTextStyle = TextStyle(
+  fontSize: 35.0,
+  fontWeight: FontWeight.w500,
+);
+
+const kButtonTextStyle = TextStyle(
+  fontSize: 20.0,
+  fontWeight: FontWeight.w500,
+);
+
+const kTitleTextStyle = TextStyle(
+  fontSize: 50.0,
+  fontWeight: FontWeight.w900,
+);
+
+const kResultTextStyle = TextStyle(
+  fontSize: 20.0,
+  fontWeight: FontWeight.w400,
+  color: Color(0xFF24D876),
+);
+
+const kBMITextStyle = TextStyle(
+  fontSize: 100.0,
+  fontWeight: FontWeight.w900,
+);
